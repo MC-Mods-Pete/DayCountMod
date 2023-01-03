@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "daycountmod",
+  "version": "${version}",
+  "name": "DayCountMod",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/DayCountMod/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "com.intijir.daycountmod.client.DayCountModClient"
+    ],
+    "main": [
+      "com.intijir.daycountmod.DayCountMod"
+    ]
+  },
+  "mixins": [
+    "DayCountMod.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.12",
+    "fabric": "*",
+    "minecraft": "1.19.3"
+  }
+}
