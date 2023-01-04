@@ -1,4 +1,5 @@
 {
   "key.daycountmod.day_count": "Day Count",
-  "key.category.day_count_keybind": "Day Count Keybinds"
+  "key.category.day_count_keybind": "Day Count Keybinds",
+  "key.daycountmod.day_count_gui": "Day Count GUI"
 }
