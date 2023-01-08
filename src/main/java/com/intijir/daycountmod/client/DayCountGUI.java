@@ -8,6 +8,9 @@ import io.github.cottonmc.cotton.gui.widget.data.Insets;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
 
+import java.io.FileWriter;
+
+import static com.intijir.daycountmod.DayCountMod.*;
 import static net.minecraft.client.gui.DrawableHelper.drawTexture;
 
 public class DayCountGUI extends LightweightGuiDescription {
@@ -16,11 +19,6 @@ public class DayCountGUI extends LightweightGuiDescription {
         setRootPanel(root);
         root.setSize(60, 60);
         root.setInsets(Insets.ROOT_PANEL);
-//        WButton button = new WButton(Text.translatable("gui.daycountmod.examplebutton"));
-//        root.add(button, 0, 3, 6, 1);
-//        button.setOnClick(() -> {
-//            client.player.sendMessage(Text.of("EXAMPLE BUTTON WORKS"));
-//        });
 
         WTextField sizexTextField = new WTextField(Text.of("   Width"));
 
@@ -32,6 +30,7 @@ public class DayCountGUI extends LightweightGuiDescription {
             } else {
                 try {
                     DayCountMod.size_x = Float.parseFloat(sizexTextField.getText());
+                    saveToFile();
                 } catch (Exception e){
                     System.out.println(e);
                 }
@@ -48,6 +47,7 @@ public class DayCountGUI extends LightweightGuiDescription {
             } else {
                 try {
                     DayCountMod.size_y = Float.parseFloat(sizeyTextField.getText());
+                    saveToFile();
                 } catch (Exception e){
                     System.out.println(e);
                 }
@@ -69,6 +69,7 @@ public class DayCountGUI extends LightweightGuiDescription {
                     } else {
                         DayCountMod.color = Integer.parseInt(colorTextField.getText());
                     }
+                    saveToFile();
                 } catch (Exception e){
                     System.out.println(e);
                 }
@@ -85,6 +86,7 @@ public class DayCountGUI extends LightweightGuiDescription {
             } else {
                 try {
                     DayCountMod.loc_x = Float.parseFloat(locxTextField.getText());
+                    saveToFile();
                 } catch (Exception e){
                     System.out.println(e);
                 }
@@ -101,6 +103,7 @@ public class DayCountGUI extends LightweightGuiDescription {
             } else {
                 try {
                     DayCountMod.loc_y = Float.parseFloat(locyTextField.getText());
+                    saveToFile();
                 } catch (Exception e){
                     System.out.println(e);
                 }
@@ -109,6 +112,17 @@ public class DayCountGUI extends LightweightGuiDescription {
         });
 
         root.validate(this);
+    }
+
+    public void saveToFile(){
+        String content = size_x + "," + DayCountMod.size_y + "," + DayCountMod.color + "," + loc_x + "," + loc_y;
+        try {
+            FileWriter writer = new FileWriter(DayCountMod.file);
+            writer.write(content);
+            writer.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 }
 

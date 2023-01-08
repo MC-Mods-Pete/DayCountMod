@@ -7,7 +7,6 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import java.io.*;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class DayCountMod implements ModInitializer, HudRenderCallback {
 
@@ -17,23 +16,11 @@ public class DayCountMod implements ModInitializer, HudRenderCallback {
     public static float loc_x = 2.0F;
     public static float loc_y = 2.0F;
     public static File file = new File("dayCountPrefrences.txt");
-
+    private int cachedDayTime = -1;
 
 
     @Override
     public void onInitialize() {
-        AtomicInteger tickNumber = new AtomicInteger();
-        ClientTickEvents.START_CLIENT_TICK.register(client -> {
-            if (tickNumber.get() == 100) {
-                MinecraftClient.getInstance().getFramebuffer().beginWrite(false);
-                HudRenderCallback.EVENT.register(this);
-
-                tickNumber.set(0);
-            } else {
-                tickNumber.getAndIncrement();
-            }
-
-        });
 
         if (!file.exists()){
             try {
@@ -64,8 +51,20 @@ public class DayCountMod implements ModInitializer, HudRenderCallback {
         } catch (Exception e) {
             System.out.println(e);
         }
-    }
 
+        ClientTickEvents.START_CLIENT_TICK.register(client -> {
+            if (client.player != null) {
+                int currentDayTime = (int) (MinecraftClient.getInstance().world.getTimeOfDay() / 24000L);
+                if (currentDayTime != cachedDayTime) {
+                    // Day time has changed, update the cached value and do any necessary updates
+                    cachedDayTime = currentDayTime;
+                    // Update the GUI or other elements as needed
+                    MinecraftClient.getInstance().getFramebuffer().beginWrite(false);
+                    HudRenderCallback.EVENT.register(this);
+                }
+            }
+        });
+    }
 
     @Override
     public void onHudRender(MatrixStack matrixStack, float tickDelta) {
@@ -77,16 +76,5 @@ public class DayCountMod implements ModInitializer, HudRenderCallback {
         matrixStack.scale(size_x, size_y, 2.5f);
         textRenderer.drawWithShadow(matrixStack, "Day: " + currentDay, 2, 2, color);
         matrixStack.pop();
-
-        String content = DayCountMod.size_x + "," + DayCountMod.size_y + "," + DayCountMod.color + "," + DayCountMod.loc_x + "," + DayCountMod.loc_y;
-        try {
-            FileWriter writer = new FileWriter(DayCountMod.file);
-            writer.write(content);
-            writer.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
     }
-
-
 }
