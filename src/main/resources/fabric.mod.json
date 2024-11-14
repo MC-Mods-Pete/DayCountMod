@@ -18,10 +18,13 @@
   "environment": "*",
   "entrypoints": {
     "client": [
-      "com.intijir.daycountmod.client.DayCountModClient"
+      "com.intijir.daycount.client.DayCountClient"
     ],
     "main": [
-      "com.intijir.daycountmod.DayCountMod"
+      "com.intijir.daycount.DayCount"
+    ],
+    "modmenu": [
+      "com.intijir.daycount.util.ModMenuIntegration"
     ]
   },
   "mixins": [

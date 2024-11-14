@@ -7,9 +7,15 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
+    maven { url "https://maven.shedaniel.me/"}
+    maven { url "https://maven.terraformersmc.com/releases/"}
+
+    // curse maven
     maven {
-        name = "CottonMC"
-        url = "https://server.bbkr.space/artifactory/libs-release"
+        url "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
     }
 }
 
@@ -21,7 +27,13 @@ dependencies {
 
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-    modImplementation include("io.github.cottonmc:LibGui:8.1.1+1.20.1")
+    modImplementation "com.terraformersmc:modmenu:7.0.1"
+    modApi("me.shedaniel.cloth:cloth-config-fabric:11.1.118") {
+        exclude(group: "net.fabricmc.fabric-api")
+    }
+    include "me.shedaniel.cloth:cloth-config-fabric:11.1.118"
+
+    modImplementation "curse.maven:jade-324717:5771000"
 }
 
 processResources {
