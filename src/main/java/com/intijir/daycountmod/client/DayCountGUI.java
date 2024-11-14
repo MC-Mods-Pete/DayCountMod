@@ -1,17 +1,14 @@
 package com.intijir.daycountmod.client;
 
 import com.intijir.daycountmod.DayCountMod;
-import com.mojang.blaze3d.systems.RenderSystem;
 import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.*;
 import io.github.cottonmc.cotton.gui.widget.data.Insets;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
-
 import java.io.FileWriter;
 
 import static com.intijir.daycountmod.DayCountMod.*;
-import static net.minecraft.client.gui.DrawableHelper.drawTexture;
 
 public class DayCountGUI extends LightweightGuiDescription {
     public DayCountGUI(MinecraftClient client) {

@@ -2,12 +2,19 @@
   "schemaVersion": 1,
   "id": "daycountmod",
   "version": "${version}",
-  "name": "DayCountMod",
-  "description": "",
-  "authors": [],
-  "contact": {},
+  "name": "Day Count",
+  "description": "This mod displays the current minecraft day in the top left (location adjustable).",
+  "authors": [
+    "Intijir, original creator",
+    "MC Mods Pete, mcmods.pete@gmail.com"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/day-count-mod",
+    "sources": "https://github.com/MC-Mods-Pete/DayCountMod",
+    "issues": "https://github.com/MC-Mods-Pete/DayCountMod/issues"
+  },
   "license": "MIT",
-  "icon": "assets/DayCountMod/icon.png",
+  "icon": "assets/daycountmod/icon.png",
   "environment": "*",
   "entrypoints": {
     "client": [
@@ -21,8 +28,8 @@
     "DayCountMod.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.14.12",
+    "fabricloader": ">=0.15.9",
     "fabric": "*",
-    "minecraft": "1.19.3"
+    "minecraft": ">=1.20"
   }
 }

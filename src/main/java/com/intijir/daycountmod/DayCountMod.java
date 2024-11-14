@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.util.math.MatrixStack;
 import java.io.*;
 
@@ -67,14 +68,15 @@ public class DayCountMod implements ModInitializer, HudRenderCallback {
     }
 
     @Override
-    public void onHudRender(MatrixStack matrixStack, float tickDelta) {
+    public void onHudRender(DrawContext drawContext, float tickDelta) {
         int currentDay = (int) (MinecraftClient.getInstance().world.getTimeOfDay() / 24000L);
         TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
+        MatrixStack matrixStack = drawContext.getMatrices();
 
         matrixStack.push();
         matrixStack.translate(loc_x, loc_y, 0);
         matrixStack.scale(size_x, size_y, 2.5f);
-        textRenderer.drawWithShadow(matrixStack, "Day: " + currentDay, 2, 2, color);
+        drawContext.drawTextWithShadow(textRenderer, "Day: " + currentDay, 2, 2, color);
         matrixStack.pop();
     }
 }
