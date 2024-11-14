@@ -11,18 +11,10 @@ import net.minecraft.client.util.math.MatrixStack;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.*;
-
 public class DayCount implements ModInitializer, HudRenderCallback {
     public static final String MOD_ID = "daycount";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-    public static float size_x = 2.0F;
-    public static float size_y = 2.0F;
-    public static int color = 0xffffff;
-    public static float loc_x = 2.0F;
-    public static float loc_y = 2.0F;
-    public static File file = new File("dayCountPrefrences.txt");
     private int cachedDayTime = -1;
 
 
