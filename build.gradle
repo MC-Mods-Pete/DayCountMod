@@ -27,13 +27,12 @@ dependencies {
 
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-    modImplementation "com.terraformersmc:modmenu:7.0.1"
-    modApi("me.shedaniel.cloth:cloth-config-fabric:11.1.118") {
+    modImplementation "com.terraformersmc:modmenu:4.0.4"
+    modApi("me.shedaniel.cloth:cloth-config-fabric:8.3.134") {
         exclude(group: "net.fabricmc.fabric-api")
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
-    include "me.shedaniel.cloth:cloth-config-fabric:11.1.118"
-
-    modImplementation "curse.maven:jade-324717:5771000"
+    include "me.shedaniel.cloth:cloth-config-fabric:8.3.134"
 }
 
 processResources {
